@@ -29,3 +29,19 @@ Dejar de hacer:
 Saltearse pasos intermedios como por ejemplo trabajar cada uno en su rama correspondiente en git.
 
 
+----Retro del Sprint 4----:
+
+Comenzar a hacer :
+Poner Enfasis en las tareas nuevas.
+
+Hacer mas :
+Hacer mas dailys.
+
+Continuar haciendo:
+Hablar sobre la meta a la que apuntamos.
+
+Hacer menos :
+Estirar el tiempo.
+
+Dejar de Hacer :
+Falta de comunicacion.
