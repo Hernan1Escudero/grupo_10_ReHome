@@ -1,19 +1,25 @@
+// Requires
 var createError = require('http-errors');
 var express = require('express');
-const path = require('path');
-const cookieParser = require('cookie-parser');
+var path = require('path');
+var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var methodOverride = require('method-override');
+var session = require('express-session');
 
-const indexRouter = require('./routes/index');
-const usersRouter = require('./routes/users');
-const productsRouter = require('./routes/products');
-const methodOverride = require("method-override")
-const app = express();
+// Require de routes
+var indexRouter = require('./routes/index.routes');
+var usersRouter = require('./routes/users.routes');
+var productsRouter = require('./routes/products.routes');
 
-// view engine setup
+var app = express();
+
+// View engine setup
+
+
+
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
-
 app.use(methodOverride('_method'));
 app.use(logger('dev'));
 app.use(express.json());
@@ -22,9 +28,16 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname,'..','public')));
 
 
+app.use(session({
+  secret : "grupoReHome10",
+  resave : true,
+  saveUninitialized : true
+}));
+
+// Routes
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.use('/products',productsRouter)
+app.use('/products', productsRouter)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -41,8 +54,5 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
-
-
-
 
 module.exports = app;

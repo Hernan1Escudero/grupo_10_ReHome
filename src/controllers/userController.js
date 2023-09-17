@@ -1,19 +1,10 @@
-const { readJSON } = require("../data");
-const { detail } = require("./productController");
-const categories = readJSON('../data/categories.json');
-
 module.exports = {
-    productCart: (req, res) => {
-        return res.render('productCart')
-    },
-    register: (req, res) => {
-        return res.render('register')
-    },
-    login: (req, res) => {
-        return res.render('login')
-    },
-    notFound: (req, res) => {
-        return res.render('404');
-    }
-    
+    productCart: require('./users/productCart'),
+    register : require('./users/register'),
+    processRegister : require ('./users/processRegister'),
+    logout : require('./users/logout'),
+    login : require('./users/login'),
+    processLogin : require('./users/processLogin'),
+    profile : require('./users/profile'),
+    notFound : require('./users/404'),
 }
