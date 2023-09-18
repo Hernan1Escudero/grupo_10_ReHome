@@ -17,7 +17,7 @@ router.get('/login', notUserCheck, userController.login);
 router.post('/login', loginValidator, userController.processLogin);
 //Registro
 router.get('/register', notUserCheck, userController.register);
-router.post('/register', userController.processRegister);
+router.post('/register', registerValidator, userController.processRegister);
 
 /* -----Usuario LOGEADO----- */
 

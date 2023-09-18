@@ -12,5 +12,19 @@
       "rol": "user",
       "image": "",
       "createAt": "2023-09-18T01:04:11.529Z"
+   },
+   {
+      "id": "c849620d-70c6-4050-8162-12d4177d7636",
+      "nombre": "sa",
+      "apellido": "sa",
+      "domicilio": "sa",
+      "ciudad": "sa",
+      "provincia": "sa",
+      "pais": "sa",
+      "email": "123@gmail.com",
+      "password": "$2a$10$lFN67n3fJ9NpHSXVlPwWPuarYMPYV0kK9MshmSWOYXf3LZD/Jj0wC",
+      "rol": "user",
+      "image": "",
+      "createAt": "2023-09-18T02:02:51.892Z"
    }
 ]
