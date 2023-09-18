@@ -1,0 +1,16 @@
+[
+   {
+      "id": "f545d458-38a4-4233-b73f-27c2498a3a76",
+      "nombre": "",
+      "apellido": "",
+      "domicilio": "",
+      "ciudad": "",
+      "provincia": "",
+      "pais": "",
+      "email": "",
+      "password": "$2a$10$FpBdtsPAqLPnso/J41TifOXRuz9HkAqUfun2nvb5dvCg4Q.m4A4u.",
+      "rol": "user",
+      "image": "",
+      "createAt": "2023-09-18T01:04:11.529Z"
+   }
+]
