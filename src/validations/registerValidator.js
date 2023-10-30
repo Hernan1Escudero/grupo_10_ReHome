@@ -19,7 +19,7 @@ module.exports = [
           return Promise.reject()
         }
       }).catch((error) => {
-        console.log(error);
+        //console.log(error);
         return Promise.reject('El email ya se encuentra registrado')
       })
     }),

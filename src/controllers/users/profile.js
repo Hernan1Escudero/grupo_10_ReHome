@@ -1,15 +1,28 @@
+const data = require("../../data")
 const { readJSON } = require("../../data")
+const db = require('../../database/models')
 
-module.exports = (req,res) => {
+module.exports = async(req,res) => {
 
-    const users = readJSON('users.json');
-    const user = users.find(user => user.id === req.session.userLogin.id);
+    const user = await db.User.findByPk(req.session.userLogin.id)
+    const adress = await db.Address.findByPk(user.address_id)
+    const image = await db.Image_user.findByPk(user.image_id)
 
-    if(user){
-        return res.render('profile',{
-        ...user
-        })
-    }else{
-        return res.redirect('login');
+    const userObject = {
+        id: user.id,
+        name : user.name,
+        surname: user.surname,
+        adress: adress.address,
+        city: adress.city,
+        province : adress.province,
+        country: adress.country,
+        image: image.file
     }
+       
+    console.log(userObject);
+        //res.send('Hola')
+        return res.render('profile',{
+          ...userObject,
+        })
+
 }
