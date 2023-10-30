@@ -22,6 +22,19 @@ module.exports = (sequelize, dataTypes) => {
       password:{
           type: dataTypes.STRING(255),
           allowNull: false,
+      },
+      role_id:{
+        type: dataTypes.TINYINT(10),
+          allowNull: false,
+         
+      },
+      address_id:{
+        type: dataTypes.TINYINT(10),
+          allowNull: false,  
+      },
+      image_id:{
+        type: dataTypes.TINYINT(10),
+        allowNull: false,  
       }
   };
   let config = {
@@ -40,10 +53,6 @@ module.exports = (sequelize, dataTypes) => {
       User.belongsTo(models.Image_user,{
         as: 'imageId',
         foreignKey: 'image_id'
-      }),
-      User.belongsTo(models.Shopping_cart,{
-        as: 'shoppingcartId',
-        foreignKey: 'shoppingcart_id'
       }),
       User.belongsTo(models.Address,{
         as: 'addressId',

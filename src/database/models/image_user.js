@@ -11,9 +11,6 @@ module.exports = (sequelize, dataTypes) => {
       type: dataTypes.STRING(255),
       allowNull: false,
     },
-    category_id:{
-      type: dataTypes.BIGINT(10).UNSIGNED,
-    }
   };
   let config = {
     timestamps: true,

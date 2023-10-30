@@ -7,6 +7,7 @@ module.exports = async (req,res) => {
 
     if(errors.isEmpty()){
         const user = await db.User.findOne({ where: { email: req.body.email } });
+        console.log("el user",user.role_id)
         const role = await db.Role.findByPk(user.role_id);
         req.session.userLogin = {
             id : user.id,
