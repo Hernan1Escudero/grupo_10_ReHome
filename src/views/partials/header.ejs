@@ -3,28 +3,26 @@
     <div>
       <a href="/">
         <div class="contenedor_titulo">
-          <div class="header__top-container">
-            <img class="home_header_logo" src="/img/logo_rehogar.png" alt="falta logo ReHome" />
-          </div>
           <div>
-            <h1 class="header_titulo">Re-Hogar</h1>
+            <h1 class="header_titulo">VYX</h1>
           </div>
         </div>
       </a>
     </div>
     <div class="header_menu_desplegado">
       <nav class="home__header__nav--menu">
+      <hr>
       <ul class="header_ul">
-        <li><a href="/">home <i class="fa-solid fa-house"></i></a></li>
+        
         <div class="header_searchbar">
           <form action="/products/search" method="GET" class="search-form">
-            <input type="text" name="keywords" placeholder="Buscar productos, marcas y más" class="search-form_input">
+            <input type="text" name="keywords" placeholder="Buscar..." class="search-form_input">
             <button class="header_searchbar_button" type="submit"><i class="fas fa-search"></i></button>
           </form>
         </div>
         <% if (locals.userLogin) { %>
           <% if (locals.userLogin.role==="admin" ) { %>
-            <li><a href="/admin">ADMIN <i class="fa-solid fa-screwdriver-wrench"></i></a></li>
+            <li><a href="/admin">ADMIN </a></li>
             <% } %>
               <% if (userLogin.role==="user") {%>
                 <li><a href="/users/productCart/<%= locals.userLogin.id %>">Carrito <i class="fa-solid fa-cart-shopping"></i>
@@ -38,10 +36,12 @@
                   <li><a href="/users/profile">Editar Perfil <i class="fa-regular fa-address-card"></i></a></li>
                   <li><a href="/users/logout">salir <i class="fa-solid fa-door-open"></i></a></li>
         <% }else{ %>
-                    <li><a href="/users/register">registro <i class="fa-regular fa-address-card"></i></a></li>
+                    
                     <li><a href="/users/login">ingresar <i class="fa-solid fa-right-to-bracket"></i></a></li>
         <% } %>
       </ul>
+      <hr>
+
     </nav>
     </div>
     <div class="header_menu_desplegable">

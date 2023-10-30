@@ -17,15 +17,19 @@ module.exports = {
   admin: (req, res) => {
     db.Product.findAll()
       .then((products) => {
+        //console.log(products)
         db.Images_product.findAll()
           .then((images_product)=>{
+
             db.Category.findAll()
               .then((categories) => {
+                //console.log(categories)
                 db.User.findAll()
                   .then((users) => {
                     db.Role.findAll()
                     .then((roles) => {
-                      return res.render("admin", {products,images_product,categories,users,roles,moment});
+                      //console.log(images_product)
+                      return res.render("admin", {products,images_product,categories,users,roles});
                     }).catch((errors)=>console.log(errors));
                   }).catch((errors)=>console.log(errors));
               }).catch((errors)=>console.log(errors));

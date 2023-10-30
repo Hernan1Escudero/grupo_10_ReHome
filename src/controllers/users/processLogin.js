@@ -7,7 +7,7 @@ module.exports = async (req,res) => {
 
     if(errors.isEmpty()){
         const user = await db.User.findOne({ where: { email: req.body.email } });
-        console.log("el user",user.role_id)
+        //console.log("el user",user.role_id)
         const role = await db.Role.findByPk(user.role_id);
         req.session.userLogin = {
             id : user.id,
@@ -16,7 +16,7 @@ module.exports = async (req,res) => {
         req.body.remember !== undefined && res.cookie('grupoReHome10',req.session.userLogin,{
             maxAge : 1000 * 60 * 60
         })
-        console.log(req.session.userLogin)
+        //console.log(req.session.userLogin)
         return res.redirect('/')
     }else {
         return res.render('login',{

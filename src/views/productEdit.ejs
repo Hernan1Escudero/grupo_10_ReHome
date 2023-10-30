@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-    <%- include('partials/head',{title: name}) %>
+  <%- include('partials/head',{title: name}) %>
 
-    <body class="productAdd">
-        <%- include('partials/header') %>
+  <body class="productAdd">
+    <%- include('partials/header') %>
 
-        <main id="home_main" class="container">
+        <main class="container">
             <div class="row">
                 <div class="col-12 col-md-8 mx-auto mt-5">
                     <div class="card shadow">
@@ -29,11 +29,16 @@
                                 </div>
                                 <div class="col-12 col-md-6 mb-3">
                                     <label for="category" class="form-label">Categoría</label>
-                                    <select class="form-select" aria-label="Default select example" name="category" id="category">
-                                        <% categories.forEach(category_i=> { %>
-                                            <option <%=category_i.name==category.name?'selected':'' %> value="<%= category_i.name%>">
-                                            <%= category_i.name %>
-                                            </option>
+                                    <select class="form-select"
+                                        aria-label="Default select example"
+                                        name="category"
+                                        id="category">
+                                        <% categories.forEach(item=> { %>
+                                        <option <%=item.name===category &&
+                                            'selected' %> value="<%= item.name
+                                            %>
+                                            "><%= item.name %>
+                                        </option>
                                         <% }) %>
                                     </select>
                                 </div>
@@ -64,12 +69,10 @@
                                           </small>
                                 </div>
                                 
-                                <div id="image_product_edit" class="col-12 col-lg-3 col-md-3 col-sm-3 d-flex">
-                                    <% images.forEach(image=> { %>
+                                <div class="col-12 col-md-6">
                                     <img
-                                        src="/img/products/<%= image.file || 'img-pdto-1.jpg' %>"
+                                        src="/img/<%= image || 'img-pdto-1.jpg' %>"
                                         alt>
-                                    <% }) %>
                                 </div>
                                 <div
                                     class="col-12 d-flex justify-content-end gap-2 mb-3">
