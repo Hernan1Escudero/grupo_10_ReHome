@@ -33,11 +33,12 @@
                                         aria-label="Default select example"
                                         name="category"
                                         id="category">
+                                        <option selected>
+                                            <%= categories[category].name  %>
+                                        </option>
                                         <% categories.forEach(item=> { %>
-                                        <option <%=item.name===category &&
-                                            'selected' %> value="<%= item.name
-                                            %>
-                                            "><%= item.name %>
+                                        <option >
+                                            <%= item.name %>
                                         </option>
                                         <% }) %>
                                     </select>

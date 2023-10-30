@@ -1,61 +1,68 @@
 const { unlinkSync, existsSync } = require("fs");
 const { validationResult } = require("express-validator");
 const { readJSON, writeJSON } = require("../../data");
+const db = require("../../database/models");
 
-module.exports = (req, res) => {
+module.exports = async (req, res) => {
   const errors = validationResult(req);
-  const products = readJSON("products.json");
 
+  const { name, price, category, discount, description } = req.body;
+  console.log("BODYYY", req.body);
   if (errors.isEmpty()) {
-    const { name, price, category, discount, description} = req.body;
 
-    const productsModify = products.map((product) => {
-      if (product.id === req.params.id) {
-        req.files.image &&
-          existsSync(`./public/products/${product.image}`) &&
-          unlinkSync(`./public/products/${product.image}`);
-
-        req.files.images &&
-          product.images.forEach((image) => {
-            existsSync(`./public/images/${image}`) &&
-              unlinkSync(`./public/images/${image}`);
-          });
-
-        product.name = name.trim();
-        product.description = description.trim();
-        product.price = +price;
-        product.discount = +discount;
-        product.category = category;
-        (product.image = req.files.image
-          ? req.files.image[0].filename
-          : product.image),
-          (product.images = req.files.images
-            ? req.files.images.map((image) => image.filename)
-            : product.images);
+    const product = await db.Product.findByPk(req.params.id);
+    const newCategory = await db.Category.findOne({
+      where:{
+        name: category
       }
-
-      return product;
     });
+    console.log(newCategory)
 
-    writeJSON(productsModify, "products.json");
+     db.Product.update(
+      {
+        description: description.trim(),
+        name,
+        price,
+        category_id: newCategory.id,
+        discount,
+        description,
+      },
+      {
+        where: {
+          id: req.params.id,
+        },
+      }
+    ); 
+    /* 
+    req.files.image &&
+      existsSync(`./public/products/${product.image}`) &&
+      unlinkSync(`./public/products/${product.image}`);
 
+    req.files.images &&
+      product.images.forEach((image) => {
+        existsSync(`./public/images/${image}`) &&
+          unlinkSync(`./public/images/${image}`);
+      }); */
     return res.redirect("/admin");
   } else {
-    const categories = readJSON('categories.json');
+    const categories = await db.Category.finAll();
 
-    (req.files.image && existsSync(`./public/img/products/${req.files.image[0].filename }`)) && unlinkSync(`./public/img/products/${req.files.image[0].filename }`);
+    req.files.image &&
+      existsSync(`./public/img/products/${req.files.image[0].filename}`) &&
+      unlinkSync(`./public/img/products/${req.files.image[0].filename}`);
 
-    if(req.files.images) {
-        req.files.images.forEach(file => {
-            existsSync(`./public/img/products/${file.filename}`) && unlinkSync(`./public/img/products/${file.filename}`)
-        })
-    } 
+    if (req.files.images) {
+      req.files.images.forEach((file) => {
+        existsSync(`./public/img/products/${file.filename}`) &&
+          unlinkSync(`./public/img/products/${file.filename}`);
+      });
+    }
 
-    const product = products.find(product => product.id === req.params.id)
-    return res.render('productEdit',{
-        errors: errors.mapped(),
-        categories,
-        ...product
-    })
+    const product = await db.Product.findByPk(req.params.id);
+    return res.render("productEdit", {
+      errors: errors.mapped(),
+      categories,
+      ...product,
+    });
   }
 };

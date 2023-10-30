@@ -13,8 +13,8 @@ module.exports = [
   check("price")
     .notEmpty()
     .withMessage("Es obligatorio")
-    .isInt({
-      gt: 1,
+    .isFloat({
+      gt:1,
     })
     .withMessage("Debe ser positivo"),
   check("description").isLength({

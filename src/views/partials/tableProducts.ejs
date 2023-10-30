@@ -12,16 +12,17 @@
             </tr>
         </thead>
         <tbody>
-            <% products.forEach(({id,name,category, price,discount, image, description},index)=> { %>
+            <% products.forEach(({id,name,category_id, price,discount, image, description},index)=> { %>
                 <tr>
                     <th scope="row">
                         <%= index + 1 %>
+                       
                     </th>
                     <td>
                         <%= name %>
                     </td>
                     <td>
-                        <%= category || 'Sin especificar' %>
+                        <%= categories[category_id-1].name || 'Sin especificar' %>
                     </td>
                     <td>
                         <%= price %>
