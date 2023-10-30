@@ -9,8 +9,12 @@ module.exports = [
     .withMessage("Formato inválido"),
   body("password")
     .custom(async(value, {req}) => {
+      console.log("AQUI ESTOY")
         const user = await db.User.findOne({ where: { email: req.body.email } });
+        
         if(!user || !compareSync(value,user.password)){
+           console.log("Aver")
+          //console.log(user,req.body.email,"ASDASDASDAD")
             return false
         }
             return true
