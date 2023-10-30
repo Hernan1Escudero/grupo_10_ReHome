@@ -23,6 +23,7 @@ module.exports = {
                   .then((users) => {
                     db.Role.findAll()
                     .then((roles) => {
+                      //console.log(images_product)
                       return res.render("admin", {products,images_product,categories,users,roles});
                     }).catch((errors)=>console.log(errors));
                   }).catch((errors)=>console.log(errors));

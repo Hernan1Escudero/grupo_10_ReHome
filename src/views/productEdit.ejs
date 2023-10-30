@@ -1,101 +1,126 @@
 <!DOCTYPE html>
 <html lang="en">
-    <%- include('partials/head',{title: name}) %>
+  <%- include('partials/head',{title: name}) %>
 
-    <body class="productAdd">
-        <%- include('partials/header') %>
+  <body class="productAdd">
+    <%- include('partials/header') %>
 
-        <main class="container">
-            <div class="row">
-                <div class="col-12 col-md-8 mx-auto mt-5">
-                    <div class="card shadow">
-                        <div class="card-header">
-                            <h4 class="card-name">Editar producto</h4>
-                        </div>
-                        <div class="card-body">
-                            <form
-                                action="/products/update/<%= id %>?_method=PUT"
-                                method="POST" class="row"
-                                enctype="multipart/form-data">
-                                <div class="col-12 col-md-6 mb-3">
-                                    <label for="name" class="form-label">Título</label>
-                                    <input type="text"  class="form-control <%= locals.errors && (errors.name && 'is-invalid') %>"
-                                        id="name"
-                                        placeholder="Título del producto"
-                                        name="name" value="<%= name %>">
-                                        <small class="text-danger ms-2">
-                                            <%= locals.errors && (errors.name && errors.name.msg) %>
-                                          </small>
-                                </div>
-                                <div class="col-12 col-md-6 mb-3">
-                                    <label for="category" class="form-label">Categoría</label>
-                                    <select class="form-select"
-                                        aria-label="Default select example"
-                                        name="category"
-                                        id="category">
-                                        <option selected>
-                                            <%= categories[category].name  %>
-                                        </option>
-                                        <% categories.forEach(item=> { %>
-                                        <option >
-                                            <%= item.name %>
-                                        </option>
-                                        <% }) %>
-                                    </select>
-                                </div>
-                                <div class="col-12 col-md-4 mb-3">
-                                    <label for="price" class="form-label">Precio</label>
-                                    <input type="number" class="form-control <%= locals.errors && (errors.price && 'is-invalid') %>"
-                                        id="price" name="price"
-                                        value="<%= price %>">
-                                        <small class="text-danger ms-2">
-                                            <%= locals.errors && (errors.price && errors.price.msg) %>
-                                          </small>
-                      
-                                </div>
-                                <div class="col-12 col-md-4 mb-3">
-                                    <label for="discount" class="form-label">Descuento</label>
-                                    <input type="number" class="form-control"
-                                        id="discount" name="discount"
-                                        value="<%= discount %>">
-                                </div>
-
-                                <div class="col-12 mb-3">
-                                    <label for="description" class="form-label">Descripción</label>
-                                    <textarea name="description"
-                                        id="description"  class="form-control  <%= locals.errors && (errors.description && 'is-invalid') %>"
-                                        style="resize: none;"><%= description %></textarea>
-                                        <small class="text-danger ms-2">
-                                            <%= locals.errors && (errors.description && errors.description.msg) %>
-                                          </small>
-                                </div>
-                                
-                                <div class="col-12 col-md-6">
-                                    <img
-                                        src="/img/<%= image || 'img-pdto-1.jpg' %>"
-                                        alt>
-                                </div>
-                                <div
-                                    class="col-12 d-flex justify-content-end gap-2 mb-3">
-                                    <label for="image" class="btn btn-secondary">Imagen
-                                        principal</label>
-                                    <input type="file" name="image" id="image"
-                                        hidden />
-                                    <label for="images"
-                                        class="btn btn-secondary">Imágenes</label>
-                                    <input type="file" multiple name="images"
-                                        id="images" hidden />
-                                    <button class="btn btn-dark">Guardar cambios</button>
-                                </div>
-                            </form>
-                        </div>
-
-                    </div>
-                </div>
+    <main class="container">
+      <div class="row">
+        <div class="col-12 col-md-8 mx-auto mt-5">
+          <div class="card shadow">
+            <div class="card-header">
+              <h4 class="card-name">Editar producto</h4>
             </div>
-        </main>
-        <%- include('partials/footer') %>
-        <%- include('partials/scripts') %>
-    </body>
+            <div class="card-body">
+              <form
+                action="/products/update/<%= id %>?_method=PUT"
+                method="POST"
+                class="row"
+                enctype="multipart/form-data"
+              >
+                <div class="col-12 col-md-6 mb-3">
+                  <label for="name" class="form-label">Título</label>
+                  <input
+                    type="text"
+                    class="form-control <%= locals.errors && (errors.name && 'is-invalid') %>"
+                    id="name"
+                    placeholder="Título del producto"
+                    name="name"
+                    value="<%= name %>"
+                  />
+                  <small class="text-danger ms-2">
+                    <%= locals.errors && (errors.name && errors.name.msg) %>
+                  </small>
+                </div>
+                <div class="col-12 col-md-6 mb-3">
+                  <label for="category" class="form-label">Categoría</label>
+                  <select
+                    class="form-select"
+                    aria-label="Default select example"
+                    name="category"
+                    id="category"
+                  >
+                    <option selected><%= categories[category].name %></option>
+                    <% categories.forEach(item=> { %>
+                    <option><%= item.name %></option>
+                    <% }) %>
+                  </select>
+                </div>
+                <div class="col-12 col-md-4 mb-3">
+                  <label for="price" class="form-label">Precio</label>
+                  <input
+                    type="number"
+                    class="form-control <%= locals.errors && (errors.price && 'is-invalid') %>"
+                    id="price"
+                    name="price"
+                    value="<%= price %>"
+                  />
+                  <small class="text-danger ms-2">
+                    <%= locals.errors && (errors.price && errors.price.msg) %>
+                  </small>
+                </div>
+                <div class="col-12 col-md-4 mb-3">
+                  <label for="discount" class="form-label">Descuento</label>
+                  <input
+                    type="number"
+                    class="form-control"
+                    id="discount"
+                    name="discount"
+                    value="<%= discount %>"
+                  />
+                </div>
 
+                <div class="col-12 mb-3">
+                  <label for="description" class="form-label"
+                    >Descripción</label
+                  >
+                  <textarea
+                    name="description"
+                    id="description"
+                    class="form-control <%= locals.errors && (errors.description && 'is-invalid') %>"
+                    style="resize: none"
+                  >
+<%= description %></textarea
+                  >
+                  <small class="text-danger ms-2">
+                    <%= locals.errors && (errors.description &&
+                    errors.description.msg) %>
+                  </small>
+                </div>
+
+                <div class="col-12 d-flex flex-column  gap-2 mb-3">
+                  <div class="d-flex flex-column ">
+                    <label for="image" class="btn btn-secondary"
+                      >Modificar imagen principal</label
+                    >
+
+                    <img
+                      height="200px"
+                      width="200px"
+                      class="align-self-center"
+                      src="/img/products/<%=image %>"
+                      alt
+                    />
+                    <input type="file" name="image" id="image" hidden />
+                  </div>
+                  <!-- <input type="file" name="image" id="image" hidden />
+                  <label for="images" class="btn btn-secondary">Imágenes</label>
+                  <input
+                    type="file"
+                    multiple
+                    name="images"
+                    id="images"
+                    hidden
+                  /> -->
+                  <button class="btn btn-dark">Guardar cambios</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <%- include('partials/footer') %> <%- include('partials/scripts') %>
+  </body>
 </html>

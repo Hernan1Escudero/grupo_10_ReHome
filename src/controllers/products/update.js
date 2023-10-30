@@ -16,7 +16,7 @@ module.exports = async (req, res) => {
         name: category
       }
     });
-    console.log(newCategory)
+    console.log(req.file)
 
      db.Product.update(
       {
