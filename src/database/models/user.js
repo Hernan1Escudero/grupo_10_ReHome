@@ -34,7 +34,7 @@ module.exports = (sequelize, dataTypes) => {
       },
       image_id:{
         type: dataTypes.TINYINT(10),
-        allowNull: false,  
+          allowNull: false,  
       }
   };
   let config = {
@@ -52,11 +52,11 @@ module.exports = (sequelize, dataTypes) => {
       }),
       User.belongsTo(models.Image_user,{
         as: 'imageId',
-        foreignKey: 'image_id'
+        foreignKey: 'id'
       }),
       User.belongsTo(models.Address,{
         as: 'addressId',
-        foreignKey: 'address_id'
+        foreignKey: 'id'
       })
   }
   return User
