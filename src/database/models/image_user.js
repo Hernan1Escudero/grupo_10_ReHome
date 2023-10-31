@@ -11,9 +11,6 @@ module.exports = (sequelize, dataTypes) => {
       type: dataTypes.STRING(255),
       allowNull: false,
     },
-    category_id:{
-      type: dataTypes.BIGINT(10).UNSIGNED,
-    }
   };
   let config = {
     timestamps: true,
@@ -27,7 +24,7 @@ module.exports = (sequelize, dataTypes) => {
   Image_user.associate = function (models) {
     Image_user.belongsTo(models.User, {
       as: "user_image",
-      foreignKey: "image_id",
+      foreignKey: "id",
     });
   };
 

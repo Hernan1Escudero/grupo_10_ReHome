@@ -18,10 +18,7 @@ module.exports = (sequelize, dataTypes) => {
   const Shopping_cart = sequelize.define(alias, cols, config);
 
   Shopping_cart.associate = function (models) {
-    Shopping_cart.hasMany(models.User, {
-      as: "user_shoppingcart",
-      foreignKey: "shoppingcart_id",
-    });
+    
     Shopping_cart.hasMany(models.Order, {
       as: "order_shoppingcart",
       foreignKey: "shoppingcart_id",
